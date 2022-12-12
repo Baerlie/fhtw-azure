@@ -9,3 +9,5 @@ RUN chmod +x ./sessions.sh
 CMD ["/bin/bash", "-c", "./sessions.sh"]
 
 # exposes ports 8000 for uvicorn, port 8501 for streamlit
+EXPOSE 8000
+EXPOSE 80
