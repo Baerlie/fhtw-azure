@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_200dc579b33e4e70a12343c02a23b5da }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_bf0987a752d448fd980c61e162c2c034 }}
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_200dc579b33e4e70a12343c02a23b5da }}/baerlie/fhtw-a-lab3:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.DOCKERHUB_USER }}/baerlie/fhtw-a-lab3:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'fhtw-pscheidl'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b8796e75331d4751ad9d5e7fb9b33554 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_200dc579b33e4e70a12343c02a23b5da }}/baerlie/fhtw-a-lab3:${{ github.sha }}'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'index.docker.io/${{ secrets.DOCKERHUB_USER }}/baerlie/fhtw-a-lab3:${{ github.sha }}'
