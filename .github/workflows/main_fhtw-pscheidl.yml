@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.DOCKERHUB_USER }}/baerlie/fhtw-a-lab3:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.DOCKERHUB_USER }}/fhtw-a-lab3:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'fhtw-pscheidl'
         slot-name: 'production'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'index.docker.io/${{ secrets.DOCKERHUB_USER }}/baerlie/fhtw-a-lab3:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.DOCKERHUB_USER }}/fhtw-a-lab3:${{ github.sha }}'
